@@ -21,18 +21,38 @@
           </li>
         </ul>
 
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-3 {% if page == 'register' %} active {% endif %}">
-            <a class="nav-link" href="{% url 'register' %}">
-              <i class="fas fa-user-plus"></i> Register</a>
-          </li>
-          <li class="nav-item mr-3 {% if page == 'login' %} active {% endif %}" >
-            <a class="nav-link" href="{% url 'login' %}">
-              <i class="fas fa-sign-in-alt"></i>
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav ml-auto">
+            <!-- You can also do if page in request.path for assigning the active attribute to links -->
+            <li class="nav-item mr-3 {% if page == 'dashboard' %} active {% endif %}">
+              <a class="nav-link" href="{% url 'dashboard' %}">
+                Welcome {{ user.username }} (Dashboard)</a>
+            </li>
+            <li class="nav-item mr-3" >
+              <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+              </a>
+              <form action="{% url 'logout' %}" method="POST" id="logout">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
+            </li>
+          </ul>
+        {% else %}
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mr-3 {% if page == 'register' %} active {% endif %}">
+              <a class="nav-link" href="{% url 'register' %}">
+                <i class="fas fa-user-plus"></i> Register</a>
+            </li>
+            <li class="nav-item mr-3 {% if page == 'login' %} active {% endif %}" >
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt"></i>
 
-              Login</a>
-          </li>
-        </ul>
+                Login</a>
+            </li>
+          </ul>
+        {% endif %}
       </div>
     </div>
   </nav>
