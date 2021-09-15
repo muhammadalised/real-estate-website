@@ -9,7 +9,7 @@ def index(request):
     listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
 
     context = {
-        'page': 'index',
+        'page': 'home',
         'listings': listings,
         'bedroom_choices': bedroom_choices,
         'price_choices': price_choices,
