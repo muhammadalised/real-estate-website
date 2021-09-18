@@ -156,3 +156,4 @@ venv
 workspace.code-workspace
 /static
 db.sqlite3
+credentials.txt

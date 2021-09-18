@@ -29,8 +29,8 @@ def contact(request):
         send_mail(
             'Property Listing Inquiry',
             f'There has been an inquiry for {listing}. Sign into the admin panel to see more.',
-            'ali.rtw2@gmail.com', # This should be same as in the email
-            [realtor_email, 'artellisys@gmail.com'],
+            '', # Write email id here that should be same as in the settings email
+            [realtor_email],
             fail_silently=False
         )
 
